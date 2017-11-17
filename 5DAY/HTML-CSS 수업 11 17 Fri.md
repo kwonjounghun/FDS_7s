@@ -91,7 +91,7 @@ $(document).ready(function() {
 * `background-position` 픽셀, 백분율 등을 사용할 수 있음
 
 #### 특수문자 입력
-<HTML> <- &ltl HTML $gt;
+<HTML> <- &ltl HTML &gtl
 [HTML Entities](https://www.w3schools.com/html/html_entities.asp)
 - - - -
 ### 애니메이션-2
