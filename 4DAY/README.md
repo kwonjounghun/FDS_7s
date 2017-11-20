@@ -1,0 +1,296 @@
+# 멤버링크의 위치 조절
+
+1. member 에 position: relative; 로 본문에 붙어있던 객체를 right를 기준을 -10px만큼 이동하도록 지정해준다.
+   ```
+    position: relative;
+    right: -10;
+   ```
+   * position: relative 를 사용하지 않으면 위치를 이동 시킬 수 없다.
+   * CSS2 스타일 방식
+2. animation의 transform 함수 이용
+   ```
+    transform: translateX(10px);
+   ```
+   * 성능 상 권장
+   * win, mac 플랫폼 별로 다른 코드처리를 하면서 transform을 점차 사용하는 추세가 보여짐
+   * translateX(10px);의 10px는 .member a 에 적용한 padding 8px 10px; 의 좌우 padding값과 연관되어 있다. 유지보수 할 때 이런 사항을 체크하여 수정해야 하는데 이러한 문제는 해당 값들을 변수로 변경하여 적용하도록 수정하여 유지보수에 용이하게 변경할 수 있다.
+
+------
+
+# 아웃라인
+
+* 다음과 같이 앵커 요소가 포커스 되었을 때 아웃라인을 보이지 않게 적용하는 것은 키보드를 사용하는 사용자의 접근성에 문제가 될 수 있다.
+   ```
+     .classname a:focus{
+   	outline: none;
+     }
+   ```
+
+* 다른 디자인적 요소로 구분이 가능한 경우에는 아웃라인을 없어도 무방하다.
+
+* 아웃라인은 기본적으로 적용되어 있는 스타일이 브라우저마다 다르기 때문에 크로스브라우징 시에 디자인을 통일해주려면 아웃라인에 대한 속성을 적용해 주는 것이 좋다. ex) firefox와 chrome 아웃라인이 다르게 보여지는 것을 확인 할 수 있다.
+
+* 멤버링크 영역의 li 요소들의 패딩을 a 요소보다 2px 크게 적용하여 아웃라인이 보여지도록 한다.
+   ```
+   .member a {
+      padding: 8px 10px;
+   }
+   ```
+   ```
+   .member li {
+     display: inline-block;
+     font-size: 1.4rem;
+     padding: 10px 0;
+   }
+   ```
+
+* :focus 요소에 포커스 됐을 때, :hover 요소에 마우스 오버 및 다운 됐을 때
+
+* 아웃라인의 영역은 outline-offset 속성을 이용하여 지정할 수 있다.
+
+   * 실제 영역보다 아웃라인을 5px 작게 적용
+   ```
+   outline-offset: -5px;
+   ```
+   * 실제 영역보다 아웃라인을 5px 크게 적용
+   ```
+   outline-offset: 5px;
+   ```
+
+* 아웃라인과 보더
+
+   * 아웃라인은 영역의 바깥쪽 선을 의미한다.
+   * 보더는 영역에 포함되는 선을 의미한다.
+
+------
+
+# 숨김 컨텐츠 만들기
+
+1. display 이용
+
+   display 속성에 "none" 값을 적용하여 해당 컨텐츠를 없는 상태로 만든다. 영역을 차지하지 않고 기계적으로도 읽어낼 수 없어서 접근성 측면에서 좋지 않은 방법이다.
+   ```
+   .readable-hidden {
+      display: none;
+   }
+   ```
+2. visibility 이용
+
+   영역은 존재하지만 보이지 않는 상태로 만든다.
+   ```
+   .readable-hidden {
+      visibility: hidden;
+   }
+   ```
+3. position, left 이용
+
+   왼쪽 방향으로 많이 이동시켜 보이지 않게 하는 방법으로 시각장애인들이 사용하는 스크린 리더 같은 것에서 접근성 측면의 문제가 발생한다.
+   ```
+   .readable-hidden {
+      position: absolute;
+      left: -9999em;
+   }
+   ```
+   * -9999em은 9999글자의 위치 만큼 왼쪽으로 위치함을 의미한다.
+4. [clip](https://www.w3schools.com/cssref/pr_pos_clip.asp) 이용
+
+   가로, 세로 영역을 1px로 지정하고 해당 영역을 0으로 clip하여 영역은 존재하지 않지만 보이지 않는 컨텐츠를 만들 수 있다.
+   ```
+   .readable-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      margin: -1px;
+      clip: rect(0,0,0,0);
+   }
+   ```
+   * margin은 음수값을 사용 할 수 있지만 paddingdms 음수값을 사용 할 수 없다.
+   * clip: rext(0 0 0 0); 은 구버전의 표기법이다.
+
+------
+
+# 건너뛰기 링크
+
+* 접근성 개선을 위해 모든 웹사이트에는 본문으로 바로 갈 수 있는 기능이 반드시 필요하며 웹접근성 향상을 위해 체크리스트를 만들어 적용해 보아야 한다.
+
+* [WCAG 2.0 지침](http://www.w3c.or.kr/Translation/WCAG20/#guidelines)
+  1. 지각할 수 있는 (Perceivable)
+  2. **이용가능한** - 건너뛰기 링크는 이 부분의 접근성 향상을 위한 방법이다.
+  3. 이해할 수 있는
+  4. 호환성 (Compatible)
+
+* "본문 바로가기" 기능은 키보드로 접근했을 때만 나타나는 기능이다.
+
+* 숨김 컨텐츠 클래스 선언자인 .readable-hidden 에 건너뛰기 링크 클래스인 .a11y 선언자를 추가하여 "본문 바로가기"를 감춘다.
+
+* focus 되었을 때 "본문 바로기기"가 나타날 수 있도록 CSS를 선언한다.
+
+   ```
+   .a11y:focus {
+      top: 5px;
+      left: 50%; //부모의 50%의 값을 가짐
+      width: auto;
+      height: auto;
+      margin: 0;
+      clip: rect(auto, auto, auto, auto);
+      background-color: #000;
+      color: #fff;
+      padding: 5px 10px;
+      transform: translateX(-50%);//자신의 크기 절반만큼 왼쪽으로 이동
+      z-index: 10;
+   } 
+   ```
+
+   * z-index: 먼저 선언된 요소들이 더 낮은 z-index를 가지며 static은 z-index를 가질 수 없다.
+
+* "본문 바로가기"의 글자색이 흰색으로 나오지 않는 문제
+
+   * 중복되는 선택자가 있을 때 선택자가 구체성의 우선순위에 있는 스타일을 적용한다.
+
+------
+
+# 구체성 우선순위
+
+* 구체성 우선수위는 id > class > tag 이며 상세하게 표현할 수로 높은 우선순위를 가진다.
+* !important: 우선순위를 건너뛰어 지정할 수 있으며, 구체성 우선순위로 인해 문제가 야기 될 수 있는 동적인 클래스에 사용하는게 좋으며 남용하는 것은 좋지 않다.
+
+------
+
+# CSS prefix
+* prefix를 붙이지 않으면 브라우저와 버전에 따라 제대로 된 결과가 보여지지 않을 수 있음
+
+* prefix.min.js: prefix를 붙여주는 스크립트 js는 [Prefix Free](https://leaverou.github.io/prefixfree/) 페이지에서 다운로드 가능
+   ```
+   /* 오래된 브라우저에서 그라데이션을 적용하지 못할 경우 컬러 적용 */
+   background: #ed8b2f;
+   /* FireFox 3.6-15 적용 */
+   background: -moz-linear-gradient(top,  #ed8b2f 1%, #e86c00 35%, #e86c00 70%, #ed8b2f 100%);
+   /* Chrome10-25, Safari5.1-6 */
+   background: -webkit-linear-gradient(top,  #ed8b2f 1%,#e86c00 35%,#e86c00 70%,#ed8b2f 100%);
+   /* W3C, IE10+, FireFox16+, Chrome26+, Opera12+, Safari7+ */
+   background: linear-gradient(to bottom,  #ed8b2f 1%,#e86c00 35%,#e86c00 70%,#ed8b2f 100%); 
+   /* IE6-9 적용할 수 있는 비표준 속성*/
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed8b2f', endColorstr='#ed8b2f',GradientType=0 );
+   ```
+
+------
+# 모서리부분을 둥글게하기
+
+- [border-radius](https://www.w3schools.com/cssref/css3_pr_border-radius.asp) 속성은 둥근 모서리를 요소에 추가하는 데 사용된다.
+- border-radius 속성에 하나의 값만 지정하면이 반지름이 네 모서리 모두에 적용된다.
+- 원하는 경우 각 영역을 개별적으로 지정할 수 있다.
+
+```
+border-radius: 0 0 15px 15px;
+```
+
+- 가로세로로 15px 떨어진 곡선을 그려준다. 하단의 모서리가 둥글게 변경된다.
+- 렌더링 엔진의 품질에 따라 곡선의 표현도 다를 수 있다.
+
+------
+
+# 메인 메뉴 CSS 적용
+
+* 선택자를 정확히 선택하여 적용하지 않으면 하위에 원하지 않는 스타일이 상속되는 일이 발생한다. 
+
+  ex) .main_menu>li 에 폰트 스타일을 적용하면 .sub-menu에 원하지 않는 스타일이 상속된다.
+
+* line-height 속성을 영역의 높이와 똑같이 맞춰주면 라인을 세로로 가운데 정렬을 할 수 있다.
+
+* span은 inline요소이기 때문에 span에 border를 블록 단위로 적용하고 싶다면 display:block;을 선언해야 한다.
+
+* span은 영역이 한정적이기 때문에 링크나 링크표시를 나타내기에는 block이 유용하다.
+
+* rgba 컬러코드 표현 rgba(red 0-255, green 0-255, blue 0-255, alpha 0.0-1.0);
+
+* text-shadow로 보더텍스트 만들기: 다중으로 그림자를 적용하여 보더 텍스트를 만든다.
+
+ ```
+ text-shadow: 1px 0 0 #000, 0 1px 0 #000, -1px 0 0 #000, 0 -1px 0 #000;
+ ```
+
+* 키보드 포커스를 받기 위한 조건
+  * a 엘리먼트 사용
+  * form 엘리먼트 사용
+  * 엘리먼트에 'tabindex' 속성 추가
+* hover 시에 span의 크기에 맞춘 border를 그리려면 border를 보여줄 span에 ::after가상클래스를 만들어 스타일을 적용한다.
+
+
+* inline-block은 보이는 것은 inline처럼 성격은 block처럼 적용된다.
+* [white-space](https://www.w3schools.com/cssref/pr_text_white-space.asp): nowrap; 공백을 1줄로 나타낸다.
+
+------
+
+# 아이콘을 벡터로 사용하기
+
+* 아이콘을 폰트로 맵핑한 폰트파일을 로드하여 사영하면 아이콘을 벡트로 처리하여 사용할 수 있다.
+
+1. [fontello](http://fontello.com/)에서 원하는 아이콘을 선택하고 다운로드한다.
+
+2. 다운로드한 압출파일을 풀고 /font에 있는 폰트를 복사하여 폰트를 로드할 workspace에 붙여넣기 한다.
+
+3. fontello.css에 선언되어 있는 @font-family 정보를 복사해서 사용 중인 font.css 파일에 붙여넣어 font-family 정보를 선언한다.
+
+4. fontello.css에서 선언된 content 정보를 가져와 사용한다.
+
+   ```
+   .icon-search:before { content: '\e800'; }
+   .icon-ok:before { content: '\e801'; }
+   .icon-plus:before { content: '\e802'; }
+   ```
+
+   * 검색 아이콘을 사용하려면 사용할 선언문에 content: '\e800'; 을 선언한다.
+
+------
+
+# javascript 로드하기
+
+```
+<script src="스크립트 파일 경로"></script>
+```
+
+* [jQuery 다운로드](https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js)
+
+
+------
+
+# js를 이용한 토글메뉴 만들기
+
+```
+//문서 준비 이벤트로 웹브라우저가 html 렌더링을 완료했을 때 함수를 실행한다.
+
+$(document).ready(function() {
+
+  var menu = $('.main-menu > li'); // main-menu 클래스의 li 요소를 menu 변수에 대입
+
+  var subMenu = $('.sub-menu'); // sub-menu 클래스를 sub-menu 클래스 요소를 subMenu 변수에 대입
+
+  var last = $('.sub-menu li:last-child a'); // sub-menu의 마지막 a요소를 last 변수에 대입
+
+  //main-menu 클래스의 li 요소가 hover 됐을 때,  sub-menu 클래스를 가진 요소를 찾아 해당 요소에 menu-act 클래스를 추가한다.
+
+  menu.hover(function() {
+
+    $(this).find('.sub-menu').toggleClass('menu-act');
+
+  });
+
+//main-menu 클래스의 a요소가 포커스 됐을 때,  sub-menu 클래스를 가진 요소를 찾아 해당 요소에 menu-act 클래스를 추가해준다. 
+
+  menu.focusin(function() { //cf.focus
+
+    $(this).find('.sub-menu').addClass('menu-act');
+
+  });
+
+//sub-menu의 마지막 a요소에서 포커스가 해제 되었을 때, 해당 요소의 부모들에서 sub-menu 클래스를 가진 요소를 찾아 해당 요소에 menu-act 클래스를 제거해준다.
+
+  last.focusout(function() {
+
+    $(this).parents('.sub-menu').removeClass('menu-act');
+
+  });
+
+});
+```
