@@ -1,0 +1,128 @@
+@charset "utf-8";
+@import url("/fonts.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css");
+
+/* normalization */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* css reset */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* all devices */
+
+
+/* html 본문 스타일 */
+
+.html {
+  font-size: 100%;
+}
+.body {
+  font-family: "Noto Sans Regualr", serif;
+  font-size: 1.4rem;
+  color: #181818;
+  background-color: white;
+}
+.readable-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* 링크 스타일 */
+
+a:link, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus, a:hover {
+  color: red;
+}
+.main-content, .footer-bg {
+  margin: 0 auto;
+}
+.header, .visual, .main-content, .slogan, .footer {
+  width: 100%;
+  margin: 0 auto;
+}
+.header {
+  position: relative;
+  background-color: white;
+}
+.logo {
+  position: absolute;
+  width: 150px;
+  left: 100px;
+  height: 100px;
+  top: 30px;
+}
+.member {
+  position: absolute;
+  right: 100px;
+  top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.member li {
+  font-size: 0.8rem;
+  padding: 0 8px 0 8px;
+}
+.search-form {
+  position: absolute;
+  top: 70px;
+  right: 100px;
+}
+#search-input {
+  border-radius: 5px;
+  margin: 0 30px 0 0;
+  width: 350px;
+  right: 100px;
+  height: 35px;
+  font-size: 0.8rem;
+}
+#search-box {
+  background-color: #988574;
+  color: white;
+  border: 1px solid #aaa;
+  height: 35px;
+}
+.navigation {
+  position: absolute;
+  width: 100%;
+  top: 120px;
+  background-color: #988574;
+  border-top: 2px solid #181818;
+  border-bottom: 2px solid #181818;
+}
+.main-menu {
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+  color: white;
+  text-shadow: 1px 1px #181818;
+}
+.sub-menu {
+  padding: 10px 0 10px 40px;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+}

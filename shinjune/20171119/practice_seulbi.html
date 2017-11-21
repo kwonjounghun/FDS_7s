@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/practice1.css">
+  <script src="js/practice1.js"></script>
+  <script src="practice-media-query.html"></script>
+  <title>웹카페</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- <a href="" class="a11y">본문 바로가기</a> -->
+    <header class="header">
+      <h2 class="logo">
+        <a href="#">
+          <image src="images/webcafe-logo.png" alt="Web Cafe"></image>
+        </a>
+      </h2>
+      <ul class="member">
+        <li class="login-menu"><a href="#">로그인</a></li>
+        <li class="login-menu"><a href="#">자료실</a></li>
+        <li class="login-menu"><a href="#">커뮤니티</a></li>
+      </ul>
+      <form class="search-form">
+        <fieldset disabled="disabled">
+          <legend>
+            <div class="search-input">
+              <input type="search" id="search-input" required placeholder="검색어를 입력하세요"><label for="search-result" id="search-box">검색</label>
+            </div>
+          </legend>
+        </fieldset>
+      </form>
+      <nav class="navigation">
+        <h2 class="readable-hidden">메인 메뉴</h2>
+        <ul class="main-menu">
+          <li tabindex="0">
+            <span class="about-html">HTML에 대해</span>
+            <ul class="sub-menu about-html">
+              <li><a href="">HTML5소개</a></li>
+              <li><a href="">레퍼런스 소개</a></li>
+              <li><a href="">활용예제</a></li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <span class="about-css">CSS에 대해</span>
+            <ul class="sub-menu about-css">
+              <li><a href="">CSS소개</a></li>
+              <li><a href="">CSS2 VS CSS3</a></li>
+              <li><a href="">CSS 애니메이션</a></li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <span class="web-standards">웹표준/웹접근성</span>
+            <ul class="sub-menu web-standards">
+              <li><a href="">웹표준이란?</a></li>
+              <li><a href="">웹접근성의 개요</a></li>
+              <li><a href="">HTML의 현재와 미래</a></li>
+            </ul>
+          </li>
+          <li tabindex="0">
+            <span class="qna">묻고 답하기</span>
+            <ul class="sub-menu qna">
+              <li><a href="">묻고 답하기</a></li>
+              <li><a href="">FAQ</a></li>
+              <li><a href="">1대1 질문</a></li>
+            </ul>
+          </li>
+          <il tabindex="0">
+            <span class="archives">자료실</span>
+            <ul class="sub-menu archives">
+              <li><a href="">공개 자료실</a></li>
+              <li><a href="">이미지 자료실</a></li>
+              <li><a href="">예제 자료실</a></li>
+            </ul>
+          </il>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-content"></main>
+    <article class="article"></article>
+    <div class="footer-bg"></div>
+  </div>
+</body>
+
+</html>
