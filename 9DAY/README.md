@@ -4,7 +4,41 @@
 
 <br />
 
-### 01 .event
+### 01 WAI-ARIA
+
+#### 1. Tab 컨트롤 제어
+
+```javascript
+$(document).ready(function() {
+  $('[role="tab"]').on('click', function(e) {
+    
+    // 선택된 제이쿼리 객체의 기본 동작 실행을 막는다.
+    e.preventDefault();
+	
+    // ‘aria-selected’ 속성을 true로 설정하고 형제 요소의 ‘aria-selected’ 속성을 false로 설정한다.
+    $(this).attr('aria-selected', true).siblings().attr('aria-selected', false);
+    
+    // $(selectedId)에 의해 선택된 객체에 'tablpanel-open' 클래스를 추가하고 형제 요소의 'tablpanel-open' 클래스를 제거한다.
+    var selectedId = "#" + $(this).attr('aria-controls');
+    $(selectedId).addClass('tabpanel-open').siblings().removeClass('tabpanel-open');
+  });
+});	
+```
+
+##### 1.1 preventDefault()
+
+- 이벤트가 발생에 따른 객체의 기본 동작을 막는다.
+- `a` 요소가 click 이벤트를 받았을 때의 기본 동작은 href 속성 값에 설정된 url로 이동하는 것이다. 이 때 a 요소의 click 이벤트를 받았을 때 `preventDefault()`가 실행되도록 하면 이 기본 동작은 실행되지 않는다.
+
+##### 1.2 [정보접근성 향상을 위산 W3C 국제 표준 WAI-ARI 사례집](www.wah.or.kr)
+
+<br />
+
+<br />
+
+<br />
+
+### 02 .event
 
 #### 1. Sprite Image와 IR 기법
 
@@ -13,8 +47,6 @@
 - 웹 페이지에서 사용하는 이미지가 많아질수록 그만큼 서버에 HTTP 요청 횟수가 증가하고, 이는 결국 렌더링 성능 저하를 가져온다. 이를 해결하기 위한 방법이 바로 **Sprite Image**이다.
 - Sprite Image는 여러 개의 개별 이미지 파일을 하나로 합쳐놓은 파일이다.
 - 실제 사용할 때는 css의 `background-image`, `background-position` 속성을 사용해 알맞은 부분만 노출한다.
-
-<br />
 
 ##### 1.2 IR 기법
 
@@ -107,21 +139,13 @@
 
 <br />
 
-<br />
-
-### 02 .related
+### 03 .related
 
 <br />
 
 <br />
 
-<br />
-
-<br />
-
-<br />
-
-### 03 .favorite
+### 04 .favorite
 
 #### 1. em과 strong
 
@@ -154,14 +178,10 @@
 
 <br />
 
-<br />
-
 #### 2. ol
 
 - `ol`은 순서 있는 리스트를 마크업할 때 사용한다.
 - 리스트의 순서를 `list-style: none`으로 지정하고 배경 이미지로 처리한다면 스크린 리더가 단순한 배경 이미지를 인식하지 못하므로 문제가 될 수 있다. `overflow: hidden`으로 화면에서 숨김 처리한 후 가상 요소를 적절히 사용한다면 이 문제를 해결할 수 있다.
-
-<br />
 
 ##### 2.1 favorite-list li::before의 content를 한 번에 numbering 처리하는 방법 
 
@@ -187,13 +207,9 @@
 
 <br />
 
-<br />
-
-####3. inline 요소의 padding
+#### 3. inline 요소의 padding
 
 -  inline 요소는 상하 padding을 가지지 못할 뿐, 좌우 padding은 가질 수 있다.
-
-<br />
 
 <br />
 
@@ -205,8 +221,6 @@
   - bottom
   - middle
 - block 요소는 `vertical-align` 속성을 가질 수 없다.
-
-<br />
 
 <br />
 
@@ -225,8 +239,6 @@
   }
   ```
 
-<br />
-
 ##### 5.2 음수 margin 이용
 
 - 음수 margin을 사용해서 수직 중앙 정렬을 할 수 있다.
@@ -238,8 +250,6 @@
     margin: -5px;
   }
   ```
-
-<br />
 
 <br />
 
@@ -277,22 +287,16 @@
 
 <br />
 
-<br />
-
 #### 7. 중복되는 코드의 처리 방법
 
-##### 3.1 전처리기 활용
+##### 7.1 전처리기 활용
 
 - Sass나 Less와 같은 전처리기를 이용하면 `@include`를 활용하여 중복된 코드의 사용을 줄일 수 있다.
 
-<br />
-
-##### 3.2 어트리뷰트 셀렉터 활용
+##### 7.2 어트리뷰트 셀렉터 활용
 
 - `[class$="more"]`: class 어트리뷰트가 "more"로 끝나는 요소를 선택한다.
 - `[href^="https"]`: href 어트리뷰트가 :https"로 시작하는 요소를 선택한다.
-
-<br />
 
 <br />
 
@@ -300,8 +304,6 @@
 
 - `position: absolute`를 선언하면 해당 요소는 block 요소가 된다.
 - 하지만 `position: relative`를 선언했을 땐 요소의 display가 block으로 바뀌지 않는다.
-
-<br />
 
 <br />
 
@@ -313,9 +315,7 @@
 
 <br />
 
-<br />
-
-### 04 .slogan  
+### 05 .slogan  
 
 #### 1. heading 
 
@@ -325,22 +325,16 @@
 
 <br />
 
-<br />
-
 #### 2. blockquote와 q
 
 - `blockquote`와 `q`는 모두 인용구를 처리할 때 사용하는 태그이다.
 - `cite` 어트리뷰트로 출처 정보를 밝힐 수 있다.
 - 저작권에 대한 경각심을 가질 필요가 있다. 책에서 인용한 정보라면 *ISBN Number*를 남기면 된다.
 
-<br />
-
-##### 1.1 blockquote
+##### 2.1 blockquote
 
 - `blockquote`는 block 형태의 인용 관련 태그이다.
 - agent style로 양쪽 여백 '들여쓰기'가 생긴다.
-
-<br />
 
 ##### 2.2 q
 
@@ -356,10 +350,6 @@
     quotes: "<<" ">>";
   }
   ```
-
-## 2017년 11월 23일
-
-<br />
 
 <br />
 
