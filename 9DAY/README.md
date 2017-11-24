@@ -142,7 +142,7 @@ $(document).ready(function() {
 
 #### 1. transition
 
-- 변화를 관찰하고자하는 속성을 `transition` 속성으로 지정하면 hover 이벤트가 발생했을 때 부드러운 변화 효과를 기대할 수 있다.
+- 변화를 관찰하고자하는 속성을 `transition` 속성으로 지정하면 hover 이벤트가 발생했을 때 부드러운 변환 효과를 기대할 수 있다.
 
   ```css
   .related-list {
