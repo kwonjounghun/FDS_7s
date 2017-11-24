@@ -27,10 +27,10 @@ $(document).ready(function() {
 
 ##### 1.1 preventDefault()
 
-- 이벤트가 발생에 따른 객체의 기본 동작을 막는다.
-- `a` 요소가 click 이벤트를 받았을 때의 기본 동작은 href 속성 값에 설정된 url로 이동하는 것이다. 이 때 a 요소의 click 이벤트를 받았을 때 `preventDefault()`가 실행되도록 하면 이 기본 동작은 실행되지 않는다.
+- 이벤트 발생에 따른 객체의 기본 동작을 막는다.
+- `a` 요소가 click 이벤트를 받았을 때의 기본 동작은 href 속성 값에 설정된 url로 이동하는 것이다. 이 때 a 요소가 click 이벤트를 받았을 때 `preventDefault()`가 실행되도록 하면 이 기본 동작은 실행되지 않는다.
 
-##### 1.2 [정보접근성 향상을 위산 W3C 국제 표준 WAI-ARI 사례집](www.wah.or.kr)
+##### 1.2 [정보 접근성 향상을 위산 W3C 국제 표준 WAI-ARI 사례집](www.wah.or.kr)
 
 <br />
 
@@ -133,13 +133,56 @@ $(document).ready(function() {
   </html>
   ```
 
-- d
 
 <br />
 
 <br />
 
 ### 03 .related
+
+#### 1. transition
+
+- 변화를 관찰하고자하는 속성을 `transition` 속성으로 지정하면 hover 이벤트가 발생했을 때 부드러운 변화 효과를 기대할 수 있다.
+
+  ```css
+  .related-list {
+    background: #fff;
+    height: 25px;
+    overflow: hidden;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    transition: all 0.5s;
+  }
+
+  .related-list:hover {
+    height: 145px;
+    padding: 12px 0;
+  }
+  ```
+
+<br />
+
+#### 2. Tab 포커스 이벤트 대응
+
+```javascript
+$(document).ready(function() {
+  
+  // ...
+  var list = $('.related-list');
+  var last = $('.related-list li:last-child a');
+
+  // 관련 사이트
+  // list에 focusin 이벤트가 발생했을 때, 'list-open' 클래스를 동적으로 추가한다.
+  list.focusin(function() {
+    $(this).addClass('list-open');
+  });
+
+  // last에 focusout 이벤트가 발생했을 때, 'related-list' 클래스를 가진 부묘 요소를 찾아 해당 요소의 'list-open' 클래스를 동적으로 제거한다.
+  last.focusout(function() {
+    $(this).parents('.related-list').removeClass('list-open');
+  });
+});
+```
 
 <br />
 
