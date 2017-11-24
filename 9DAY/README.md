@@ -36,8 +36,6 @@ $(document).ready(function() {
 
 <br />
 
-<br />
-
 ### 02 .event
 
 #### 1. Sprite Image와 IR 기법
