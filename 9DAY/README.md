@@ -296,7 +296,7 @@ $(document).ready(function() {
 
 #### 6. background의 position이 재정의되는 문제를 피하는 방법
 
-- 속기법으로 `background` 속성을 정의하게 되면, 명시적으로 position을 설정하지 않았더라도 기본값인 0 0으로 position 속성이 설정된 상태가 된다. 따라서 이전에 선언하지 않은 줄 알았던 position을 설정하기 위해 다른 선택자를 사용했을 때,구체성 점수가 더 낮다면, 이미 한번 정의된 position의 값을 설정할 수 없는 문제가 발생한다. 이 문제는 background 개별 속성을 사용하면 간단히 해결된다.
+- 속기법으로 `background` 속성을 정의하게 되면, 명시적으로 position을 설정하지 않았더라도 기본값인 0 0으로 position 속성이 설정된 상태가 된다. 따라서 이전에 선언하지 않은 줄 알았던 position을 설정하기 위해 다른 선택자를 사용했을 때 구체성 점수가 더 낮다면, 이미 한번 정의된 position의 값을 설정할 수 없는 문제가 발생한다. 이 문제는 background 개별 속성을 사용하면 간단히 해결된다.
 
   ```css
   .favorite-list em {
@@ -362,7 +362,7 @@ $(document).ready(function() {
 
 - 웹 사이트의 성격을 고민해봤을 때, 이미지라 하더라도 그 뜻과 닿아있다면 heading으로 처리해도 적절하다. 적절한 텍스트를 넣은 후에 IR 기법으로 글자를 덮어씌워 처리하면 된다.
 - heading의 IR 처리를 위해 가상 클래스 방법을 사용할 때, 가상 클래스인 `::before`, `::after`는 빈 내용이더라도 반드시 content 속성의 값이 존재해야 상자가 준비된다.
-- `position: absolute`는 **자신의 조상 요소 중에 static이 아닌 가장 가까운 요소를 기준으로 자신의 위치를 설정**하므로, 부모 요소가 꼭 relative일 필요는 없다. absolute여도 가능하다.
+- `position: absolute`는 **자신의 조상 요소 중에 static이 아닌 가장 가까운 요소를 기준으로 자신의 위치를 조정**하므로, 부모 요소가 꼭 relative일 필요는 없다. absolute여도 가능하다.
 
 <br />
 
@@ -375,7 +375,7 @@ $(document).ready(function() {
 ##### 2.1 blockquote
 
 - `blockquote`는 block 형태의 인용 관련 태그이다.
-- agent style로 양쪽 여백 '들여쓰기'가 생긴다.
+- ​
 
 ##### 2.2 q
 
