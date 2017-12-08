@@ -557,7 +557,7 @@ function filter(arr){
 
    1. [1, 2, 3, 4, 5]
    2. [2, 4]
-   3. **[3, 4, 5]**
+   3. **[1, 2]**
    4. [2, 3, 4, 5]
 
 2. 짝수와 홀수를 판단하여 반환하는 함수의 반환 부분을 완성하세요.
@@ -574,6 +574,7 @@ function filter(arr){
 
    ```javascript
    const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+   console.log(animals.slice(2));
    ```
 
    1. **["camel", "duck", "elephant"]**
