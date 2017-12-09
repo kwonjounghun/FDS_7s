@@ -211,7 +211,15 @@ const combination = arr => {
 }
 
 // Solution
-
+function combination(arr) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      newArr.push([arr[i], arr[j]]);
+    }
+  }
+  return newArr;
+}
 ```
 
 <br />
@@ -431,6 +439,15 @@ const vowel = str => {
 }
 
 // Solution
+function countVowel(str) {
+  let count = 0;
+  for (let c of str) {
+    if (['a', 'e', 'i', 'o', 'u'].includes(c)) {
+      count++;
+    }
+  }
+  return count;
+}
 ```
 
 <br />
@@ -539,7 +556,7 @@ function countChar(str) {
 
    정답: ④
 
-   해설:  `/`는 나눗셈 연산자, `%`는 나머지 연산자를 의미한다. 이때 자바스크리브는 정수를 나타내는 자료형이 따로 존재하지 않기 때문에, 몫을 구하기 위해서는 `/` 연산 실행 후 `Number.prototype.floor()`을 이용하여 소수점 이하 자리를 버려야 한다.
+   해설:  `/`는 나눗셈 연산자, `%`는 나머지 연산자를 의미한다. 이때 자바스크리브는 정수를 나타내는 자료형이 따로 존재하지 않기 때문에, 몫을 구하기 위해서는 `/` 연산 실행 후 `Number.floor()`을 이용하여 소수점 이하 자리를 버려야 한다.
 
    <br />
 
