@@ -570,7 +570,7 @@ function countChar(str) {
 
    <br />
 
-   정답: ①, ③, ④, ⑤
+   정답: ①, ③, ⑤
 
    <br />
 
