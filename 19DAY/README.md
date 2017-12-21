@@ -570,7 +570,11 @@ function countChar(str) {
 
    <br />
 
+<<<<<<< HEAD
    정답: ①, ④, ⑤
+=======
+   정답: ①, ③, ⑤
+>>>>>>> af636e5decc19d55aaea1fa62388af9eca449732
 
    <br />
 
@@ -584,4 +588,8 @@ function countChar(str) {
 
    <br />
 
+<<<<<<< HEAD
    정답: ①, ③, ④
+=======
+   정답: ①, ③, ④, ⑤
+>>>>>>> af636e5decc19d55aaea1fa62388af9eca449732
